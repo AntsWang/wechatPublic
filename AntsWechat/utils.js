@@ -1,7 +1,7 @@
 const fs = require("fs");
 const xmltojs  = require('xml2js');
 function formatMessage(data){
-        var keys = Object.keys(),obj = {};
+        var keys = Object.keys(data),obj = {};
         for(let i = 0;i<keys.length;i++){
                 if(data[keys[i]] instanceof Array && data[keys[i]].length==1){
                          obj[keys[i]] =data[keys[i]][0] 
@@ -44,7 +44,6 @@ exports.xmlToJs = function(xml){
         xmltojs.parseString(xml,function(err,content){
             if(err) reject(err);
             let con = formatMessage(content);
-            console.log(con)
             resolve(con)
         })
     })
