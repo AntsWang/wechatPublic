@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const sha1 = require('sha1');
+const weixin = require('./weixin');
 const config = {
     wechat:{
         appId:'wx66fbd4efb82773b2',
@@ -7,9 +8,9 @@ const config = {
         token:'wangpengjie'
     }
 }
-const wechat = require('./wechat/g');
+const g = require('./wechat/g');
 const app = new Koa();
-app.use(wechat(config));
+app.use(g(config,weixin.reply));
 
 app.listen(1234);
 console.log("Listening:1234")

@@ -1,5 +1,6 @@
 const request = require('request');
 const utils = require('../utils');
+const replayXml = require('./replayXml');
 const api = {
     getAccessToken:'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential'
 }
@@ -40,5 +41,16 @@ Wechat.prototype.upDateToken = function(){
             console.log(data)
         })
  })
+}
+
+Wechat.prototype.replay = function(){
+    var content = this.body;
+    var message = this.weixin;
+
+    var xml = replayXml.getXml(content,message);
+
+    this.status = 200;
+    this.type = 'application/xml';
+    this.body = xml;
 }
 module.exports = Wechat;
