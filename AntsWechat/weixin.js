@@ -1,6 +1,5 @@
 exports.reply = function* (next){
     var message = this.weixin;
-    console.log(message,22222)
     if(message.MsgType === 'event'){
         if(message.Event === 'subscribe'){
             if(message.EventKey) console.log('扫描二维码关注：'+message.EventKey+' '+message.ticket);
